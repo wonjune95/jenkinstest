@@ -1,6 +1,0 @@
----
-- name: Deploy to Kubernetes
-  hosts: localhost
-  tasks:
-    - name: Apply Kubernetes deployment
-      command: sudo kubectl apply -f /root/lab6/deploy_lb.yml
