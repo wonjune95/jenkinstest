@@ -4,7 +4,7 @@
   hosts: master
   tasks:
     - name: Log in to Docker Hub
-      command: docker login -u <your_dockerhub_username> -p <your_dockerhub_password>
+      command: docker login -u wonjune95 -p dnjswns95!!
       no_log: true
 
     - name: Build Docker image
