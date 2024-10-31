@@ -1,6 +1,11 @@
 pipeline {
   agent any
   stages {
+    stage('Clone Git Repository') {
+      steps {
+        git branch: 'main', url: 'https://github.com/wonjune95/jenkinstest.git'
+      }
+    }
     stage('Deploy Docker Image on Master') {
       environment {
         ANSIBLE_HOST_KEY_CHECKING = 'False'
