@@ -7,6 +7,11 @@
       command: docker login -u wonjune95 -p dnjswns95!!
       no_log: true
 
+    - name: Copy index.html to Docker build context
+      copy:
+        src: /var/lib/jenkins/workspace/wonjune/index.html
+        dest: /root/portal/index.html
+
     - name: Build Docker image
       command: docker build -t wonjune95/keduitlab:puple .
       args:
