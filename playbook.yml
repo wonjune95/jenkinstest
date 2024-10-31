@@ -15,7 +15,6 @@
  
     - name: Log in to Docker Hub
       command: docker login -u wonjune95 -p dnjswns95!!
-      no_log: true
 
     - name: Docker build
       command: docker build -t wonjune95/keduitlab:puple /root
@@ -25,8 +24,7 @@
 
     - name: Deploy to Kubernetes
       command: kubectl create deploy web-puple --replicas=3 --port=80 --image=wonjune95/keduitlab:puple
-      ignore_errors: yes
 
     - name: Expose Service on Kubernetes
-      command: kubectl expose deploy web-puple --type=LoadBalancer --port=80 --target-port=80 --name=web-puple-svc
-      ignore_errors: yes
+      command: kubectl expose deploy web-puple --type=LoadBalancer --port=8080 --target-port=80 --name=web-puple-svc
+    
