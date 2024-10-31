@@ -17,14 +17,14 @@
       command: docker login -u wonjune95 -p dnjswns95!!
 
     - name: Docker build
-      command: docker build -t wonjune95/keduitlab:puple /root
+      command: docker build -t wonjune95/keduitlab:purple /root
 
     - name: Docker Push
-      command: docker push wonjune95/keduitlab:puple
+      command: docker push wonjune95/keduitlab:purple
 
     - name: Deploy to Kubernetes
-      command: kubectl create deploy web-puple --replicas=3 --port=80 --image=wonjune95/keduitlab:puple
+      command: kubectl create deploy web-purple --replicas=3 --port=80 --image=wonjune95/keduitlab:purple
 
     - name: Expose Service on Kubernetes
-      command: kubectl expose deploy web-puple --type=LoadBalancer --port=80 --target-port=80 --name=web-puple-svc
+      command: kubectl expose deploy web-purple --type=LoadBalancer --port=80 --target-port=80 --name=web-purple-svc
     
