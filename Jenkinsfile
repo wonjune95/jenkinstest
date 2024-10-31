@@ -1,25 +1,11 @@
 pipeline {
   agent any
-  environment {
-    WORKSPACE = "${env.WORKSPACE}"
-  }
   stages {
-    stage('git scm update') {
+    stage('Run Ansible on Master') {
       steps {
-        git url: 'https://github.com/wonjune95/jenkinstest.git', branch: 'main'
-      }
-    }
-    stage('docker build and push') {
-      steps {
+        // Ansible이 마스터에 명령을 전달하는 플레이북 실행
         sh '''
-        ansible-playbook -e workspace=${WORKSPACE} /path/to/docker_build_push.yml
-        '''
-      }
-    }
-    stage('deploy and service') {
-      steps {
-        sh '''
-        ansible-playbook -e workspace=${WORKSPACE} /path/to/k8s_deploy.yml
+        ansible-playbook -i /etc/ansible/hosts /path/to/playbook.yml
         '''
       }
     }
