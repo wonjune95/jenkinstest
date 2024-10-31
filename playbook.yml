@@ -6,7 +6,6 @@
     - name: Download specific file from GitHub
       ansible.builtin.shell: wget https://raw.githubusercontent.com/wonjune95/jenkinsfile/main/index.html -O /var/lib/jenkins/workspace/wonjune/index.html
 
-
     - name: Log in to Docker Hub
       command: docker login -u wonjune95 -p dnjswns95!!
       no_log: true
