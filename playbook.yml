@@ -3,29 +3,24 @@
   hosts: master
   gather_facts: false
   tasks:    
-    - name: Clone GitHub repository
-      git:
-        repo: "https://github.com/wonjune95/jenkinsfile.git"
-        dest: /var/lib/jenkins/workspace/wonjune/
-        version: "main"
-        force: yes
+    - name: Dockerfile
+      copy:
+        src: /var/lib/jenkins/workspace/wonjune/Dockerfile
+        dest: /root
+        
+    - name: Index.html
+      copy:
+        src: /var/lib/jenkins/workspace/wonjune/index.html
+        dest: /root
  
     - name: Log in to Docker Hub
       command: docker login -u wonjune95 -p dnjswns95!!
       no_log: true
 
-    - name: Copy files from Jenkins workspace to Docker build context
-      copy:
-        src: /var/lib/jenkins/workspace/wonjune/
-        dest: /root/portal/
-        remote_src: no
+    - name: Docker build
+      command: docker build -t wonjune95/keduitlab:puple /root
 
-    - name: Build Docker image
-      command: docker build -t wonjune95/keduitlab:puple .
-      args:
-        chdir: /root/portal
-
-    - name: Push Docker image to Docker Hub
+    - name: Docker Push
       command: docker push wonjune95/keduitlab:puple
 
     - name: Deploy to Kubernetes
