@@ -1,6 +1,7 @@
 ---
 - name: Build and Push Docker image on Master
   hosts: master
+  gather_facts: false
   tasks:
     - name: Clone GitHub repository
       git:
