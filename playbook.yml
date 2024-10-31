@@ -7,15 +7,10 @@
       command: docker login -u wonjune95 -p dnjswns95!!
       no_log: true
 
-    - name: Copy index.html to Docker build context
-      copy:
-        src: /var/lib/jenkins/workspace/wonjune/index.html
-        dest: /root/portal/index.html
-
     - name: Build Docker image
       command: docker build -t wonjune95/keduitlab:puple .
       args:
-        chdir: /root/portal
+        chdir: /var/lib/jenkins/workspace/wonjune # Jenkins가 GitHub에서 클론한 경로
 
     - name: Push Docker image to Docker Hub
       command: docker push wonjune95/keduitlab:puple
