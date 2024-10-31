@@ -26,5 +26,5 @@
       command: kubectl create deploy web-puple --replicas=3 --port=80 --image=wonjune95/keduitlab:puple
 
     - name: Expose Service on Kubernetes
-      command: kubectl expose deploy web-puple --type=LoadBalancer --port=8080 --target-port=80 --name=web-puple-svc
+      command: kubectl expose deploy web-puple --type=LoadBalancer --port=80 --target-port=80 --name=web-puple-svc
     
