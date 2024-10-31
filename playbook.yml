@@ -1,0 +1,13 @@
+---
+- name: Deploy Docker container on master and nodes
+  hosts: master,node
+  tasks:
+    - name: Build Docker image
+      command: sudo docker build -t wonjune95/keduit:puple .
+      args:
+        chdir: "{{ workspace }}"
+    - name: Push Docker image to registry
+      command: sudo docker push wonjune95/keduit:puple
+    - name: Apply Kubernetes deployment on master
+      command: sudo kubectl apply -f /root/lab6/deploy_lb.yml
+      when: inventory_hostname == 'master-node'
