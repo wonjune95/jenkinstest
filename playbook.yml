@@ -10,15 +10,15 @@
     - name: Build Docker image
       command: docker build -t wonjune95/keduitlab:puple .
       args:
-        chdir: /root/portal  # Dockerfile이 위치한 디렉토리
+        chdir: /root/portal
 
     - name: Push Docker image to Docker Hub
       command: docker push wonjune95/keduitlab:puple
 
     - name: Deploy to Kubernetes
       command: kubectl create deploy web-puple --replicas=3 --port=80 --image=wonjune95/keduitlab:puple
-      ignore_errors: yes  # 배포가 이미 존재하는 경우 오류 무시
+      ignore_errors: yes
 
     - name: Expose Service on Kubernetes
       command: kubectl expose deploy web-puple --type=LoadBalancer --port=80 --target-port=80 --name=web-puple-svc
-      ignore_errors: yes  # 서비스가 이미 존재하는 경우 오류 무시
+      ignore_errors: yes
