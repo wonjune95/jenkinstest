@@ -4,13 +4,13 @@
   hosts: master
   tasks:
     - name: Log in to Docker Hub
-      command: docker login -u wonjune95 -p dnjswns95!!
+      command: docker login -u <your_dockerhub_username> -p <your_dockerhub_password>
       no_log: true
 
     - name: Build Docker image
       command: docker build -t wonjune95/keduit:puple .
       args:
-        chdir: /actual/path/to/Dockerfile_directory
+        chdir: /root/portal
 
     - name: Push Docker image to Docker Hub
       command: docker push wonjune95/keduit:puple
