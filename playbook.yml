@@ -14,3 +14,9 @@
 
     - name: Push Docker image to Docker Hub
       command: docker push wonjune95/keduit:puple
+
+    - name: Deploy
+      command: sudo kubectl create deploy web-puple --replicas=3 --port=80 --image=wonjune95/keduitlab:puple
+
+    - name: Expose
+      command: sudo kubectl expose deploy web-puple --type=LoadBalancer --port=80 --target-port=80 --name=web-puple-svc
