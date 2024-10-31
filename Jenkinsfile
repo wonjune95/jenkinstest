@@ -1,12 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('git scm update') {                   # git으로 처리하겠다.
+    stage('git scm update') {
       steps {
         git url: 'https://github.com/wonjune95/jenkinstest.git', branch: 'main'
       }
     }
-    stage('docker build and push') {            # docker로 처리하겠다.
+    stage('docker build and push') {
       steps {
         sh '''
         sudo docker build -t wonjune95/keduit:puple .
@@ -14,7 +14,7 @@ pipeline {
         '''
       }
     }
-    stage('deploy and service') {               # kubernetes로 처리하겠다.
+    stage('deploy and service') {
       steps {
         sh '''
         sudo kubectl apply -f deploy_lb.yml
