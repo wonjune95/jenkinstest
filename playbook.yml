@@ -1,13 +1,16 @@
+# playbook.yml
 ---
-- name: Deploy Docker container on master and nodes
-  hosts: master,node
+- name: Build and Push Docker image on Master
+  hosts: master
   tasks:
+    - name: Log in to Docker Hub
+      command: docker login -u wonjune95 -p dnjswns95!!
+      no_log: true
+
     - name: Build Docker image
-      command: sudo docker build -t wonjune95/keduit:puple .
+      command: docker build -t wonjune95/keduit:puple /path/to/Dockerfile_directory
       args:
-        chdir: "{{ workspace }}"
-    - name: Push Docker image to registry
-      command: sudo docker push wonjune95/keduit:puple
-    - name: Apply Kubernetes deployment on master
-      command: sudo kubectl apply -f /root/lab6/deploy_lb.yml
-      when: inventory_hostname == 'master-node'
+        chdir: /path/to/Dockerfile_directory
+
+    - name: Push Docker image to Docker Hub
+      command: docker push wonjune95/keduit:puple
