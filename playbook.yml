@@ -18,7 +18,7 @@
     - name: Log in to Docker Registry
       command: docker login 211.183.3.199 -u admin -p test123  # 아이디 비밀번호 확인하기
 
-    # Docker 이미지를 빌드하기
+    # Docker 이미지를  빌드하기
     - name: Build Docker image
       command: docker build -t wonjune:0913 .
       args:
