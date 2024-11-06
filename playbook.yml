@@ -32,6 +32,6 @@
     - name: Push Docker image to Docker Registry
       command: docker push 211.183.3.199/wonjune/jang:0913
 
-    # Kubernetes Deployment 적용
+    # Kubernetes Deployment  적용
     - name: Apply Deployment
       command: kubectl apply -f /root/jen/testpod.yml
