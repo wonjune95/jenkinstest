@@ -20,13 +20,17 @@
 
     # Docker 이미지를 빌드하기
     - name: Build Docker image
-      command: docker build -t 211.183.3.199/subject:0913 .
+      command: docker build -t wonjune:0913 .
       args:
         chdir: /root/jen/subject_option  # Dockerfile이 있는 경로
 
+    # Docker 이미지를 태그하기
+    - name: Tag Docker image
+      command: docker tag wonjune:0913 211.183.3.199/wonjune/jang:0913
+
     # Docker 이미지를 레지스트리에 푸시하기
     - name: Push Docker image to Docker Registry
-      command: docker push 211.183.3.199/subject:0913
+      command: docker push 211.183.3.199/wonjune/jang:0913
 
     # Kubernetes Deployment 적용
     - name: Apply Deployment
