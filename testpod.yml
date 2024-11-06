@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: wonjune
 spec:
-  replicas: 3  # 복제본 2개
+  replicas: 5  # 복제본 2개
   selector:
     matchLabels:
       app: wonjune
@@ -14,9 +14,11 @@ spec:
     spec:
       containers:
       - name: wonjune-web
-        image: 211.183.3.199/subject:jenkins
+        image: 211.183.3.199/wonjune/jang:0913
         ports:
         - containerPort: 80
+      imagePullSecrets:
+      - name: regcred
 
 #로드 밸런서 작성하기
 ---
